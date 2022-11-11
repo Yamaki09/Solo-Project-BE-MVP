@@ -22,8 +22,8 @@
 		"start": "nodemon server.js",
 		"build": "npm install && npx react-scripts build && npm run migrate && npm run seed",
 		"test": "echo \"Error: no test specified\" && exit 1",
-		"migrate": "npx knex migrate:latest --knexfile db/knex/knexfile.js",
-		"seed": "knex seed:run --knexfile db/knex/knexfile.js"
+		"migrate": "npx knex migrate:latest --knexfile db/knexfile.js",
+		"seed": "knex seed:run --knexfile db/knexfile.js"
 	},
 	"author": "",
 	"license": "ISC"
