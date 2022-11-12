@@ -16,20 +16,28 @@ const ExpenseController = {
 			console.log(data);
 			res.status(200).json(data);
 		} catch (error) {
-			console.log(error);
+			console.log("this is get expense error", error);
 		}
 	},
 	// CONTINUE HERE
-	putUserExpense: async (req, res) => {
+	postUserExpense: async (req, res) => {
 		try {
-			const { userid } = req.params;
+			const userid = "1";
 			const { name, value } = req.body;
-			console.log("this is put Expense", name, value);
+			console.log("this is post expense", name, value);
+			const newInput = {
+				name: name,
+				value: value,
+				expense_id: userid,
+			};
+			const data = await knex("expense").returning(["*"]).insert(newInput);
+			console.log("this is the new expense input", data);
+			res.status(200).json(data);
 		} catch (error) {
 			console.log(error);
 		}
 	},
-	postUserExpense: async (req, res) => {
+	putUserExpense: async (req, res) => {
 		try {
 			const { name, value, income_id } = req.body;
 			console.log("this is post Expense", name, value, income_id);
