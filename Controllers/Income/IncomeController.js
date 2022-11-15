@@ -41,6 +41,16 @@ const IncomeController = {
 			const { userid } = req.params;
 			const { name, value } = req.body;
 			console.log("this is put income", name, value);
+
+			const data = await knex("income")
+				.where({ income_id: userid })
+				.update({ name: name, value: value })
+				.returning("*");
+			console.log("this is put new data", data);
+
+			if (data.length > 0) {
+				res.status(200).json(data);
+			}
 		} catch (error) {
 			console.log(error);
 		}
