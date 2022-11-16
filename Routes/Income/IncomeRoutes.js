@@ -4,6 +4,6 @@ const IncomeController = require("../../Controllers/Income/IncomeController");
 
 router.get("/:userid", IncomeController.getUserIncome);
 router.post("/new", IncomeController.postUserIncome);
-router.put("/edit", IncomeController.putUserIncome);
+router.put("/edit/:userid/:incomeid", IncomeController.putUserIncome);
 
 module.exports = router;
