@@ -8,6 +8,7 @@ const IncomeController = {
 			const { userid } = req.params;
 			const data = await knex("income")
 				.select({
+					id: "id",
 					name: "name",
 					value: "value",
 				})
@@ -18,19 +19,16 @@ const IncomeController = {
 			console.log(error);
 		}
 	},
-	// CONTINUE HERE
 	postUserIncome: async (req, res) => {
 		try {
 			const userid = "1";
 			const { name, value } = req.body;
-			console.log("this is post income", name, value);
 			const newInput = {
 				name: name,
 				value: value,
 				income_id: userid,
 			};
 			const data = await knex("income").returning(["*"]).insert(newInput);
-			console.log("this is the new income input", data);
 			res.status(200).json(data);
 		} catch (error) {
 			console.log(error);
@@ -38,19 +36,17 @@ const IncomeController = {
 	},
 	putUserIncome: async (req, res) => {
 		try {
-			const { userid } = req.params;
+			const { userid, incomeid: id } = req.params;
 			const { name, value } = req.body;
 			console.log("this is put income", name, value);
+			console.log("this is put income id", id);
 
 			const data = await knex("income")
-				.where({ income_id: userid })
+				.returning(["*"])
 				.update({ name: name, value: value })
-				.returning("*");
+				.where({ income_id: userid, id: id });
 			console.log("this is put new data", data);
-
-			if (data.length > 0) {
-				res.status(200).json(data);
-			}
+			res.status(200).json(data);
 		} catch (error) {
 			console.log(error);
 		}

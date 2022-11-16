@@ -6,12 +6,12 @@ const ExpenseController = {
 	getUserExpense: async (req, res) => {
 		try {
 			const { userid } = req.params;
-			const data = await knex
+			const data = await knex("expense")
 				.select({
+					id: "id",
 					name: "name",
 					value: "value",
 				})
-				.from("expense")
 				.where({ expense_id: userid });
 			console.log(data);
 			res.status(200).json(data);
@@ -19,7 +19,6 @@ const ExpenseController = {
 			console.log("this is get expense error", error);
 		}
 	},
-	// CONTINUE HERE
 	postUserExpense: async (req, res) => {
 		try {
 			const userid = "1";
@@ -39,8 +38,17 @@ const ExpenseController = {
 	},
 	putUserExpense: async (req, res) => {
 		try {
-			const { name, value, income_id } = req.body;
-			console.log("this is post Expense", name, value, income_id);
+			const { userid, expenseid: id } = req.params;
+			const { name, value } = req.body;
+			console.log("this is put expense", name, value);
+			console.log("this is put expense id", id);
+
+			const data = await knex("expense")
+				.returning(["*"])
+				.update({ name: name, value: value })
+				.where({ expense_id: userid, id: id });
+			console.log("this is put new data", data);
+			res.status(200).json(data);
 		} catch (error) {
 			console.log(error);
 		}

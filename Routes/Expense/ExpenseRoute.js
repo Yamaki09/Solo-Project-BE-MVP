@@ -4,5 +4,6 @@ const ExpenseController = require("../../Controllers/Expense/ExpenseController")
 
 router.get("/:userid", ExpenseController.getUserExpense);
 router.post("/new", ExpenseController.postUserExpense);
+router.put("/edit/:userid/:expenseid", ExpenseController.putUserExpense);
 
 module.exports = router;
