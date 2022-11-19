@@ -21,14 +21,17 @@ const IncomeController = {
 	},
 	postUserIncome: async (req, res) => {
 		try {
-			const userid = "1";
+			const { userid } = req.params;
 			const { name, value } = req.body;
 			const newInput = {
 				name: name,
 				value: value,
 				income_id: userid,
 			};
-			const data = await knex("income").returning(["*"]).insert(newInput);
+			const data = await knex("income")
+				.returning(["*"])
+				.insert(newInput)
+				.where({ income_id: userid });
 			res.status(200).json(data);
 		} catch (error) {
 			console.log(error);

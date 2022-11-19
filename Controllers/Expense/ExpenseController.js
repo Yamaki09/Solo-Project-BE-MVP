@@ -21,7 +21,7 @@ const ExpenseController = {
 	},
 	postUserExpense: async (req, res) => {
 		try {
-			const userid = "1";
+			const { userid } = req.params;
 			const { name, value } = req.body;
 			console.log("this is post expense", name, value);
 			const newInput = {
