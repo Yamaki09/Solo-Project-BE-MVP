@@ -4,7 +4,7 @@
 
 ## App Description
 
-Nin-Money API is an API to communicate from Nin-Money REACT app to the backend and database. Our app is created from REACT because we want to build a responsive website for our users. This repo is for FE only. Please visit this [link](https://github.com/Yamaki09/Solo-Project-BE-MVP) for the Frontend.
+Nin-Money API is an API to communicate from Nin-Money REACT app to the backend and database. My app is created from REACT because I want to build a responsive website for our users. This repo is for FE only. Please visit this [link](https://github.com/Yamaki09/Solo-Project-BE-MVP) for the Frontend.
 
 ## Getting Started
 
