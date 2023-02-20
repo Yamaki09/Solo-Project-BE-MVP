@@ -41,7 +41,6 @@ const ExpenseController = {
 			const { userid, expenseid: id } = req.params;
 			const { name, value } = req.body;
 			console.log("this is put expense", name, value);
-			console.log("this is put expense id", id);
 
 			const data = await knex("expense")
 				.returning(["*"])
