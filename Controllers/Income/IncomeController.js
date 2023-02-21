@@ -42,7 +42,6 @@ const IncomeController = {
 			const { userid, incomeid: id } = req.params;
 			const { name, value } = req.body;
 			console.log("this is put income", name, value);
-			console.log("this is put income id", id);
 
 			const data = await knex("income")
 				.returning(["*"])
