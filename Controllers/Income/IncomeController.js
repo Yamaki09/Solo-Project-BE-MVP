@@ -13,7 +13,6 @@ const IncomeController = {
 					value: "value",
 				})
 				.where({ income_id: userid });
-			console.log(data);
 			res.status(200).json(data);
 		} catch (error) {
 			console.log(error);
