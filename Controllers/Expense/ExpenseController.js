@@ -46,7 +46,6 @@ const ExpenseController = {
 				.returning(["*"])
 				.update({ name: name, value: value })
 				.where({ expense_id: userid, id: id });
-			console.log("this is put new data", data);
 			res.status(200).json(data);
 		} catch (error) {
 			console.log(error);
